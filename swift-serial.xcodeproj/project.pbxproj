@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		16C603C556BCB10C91B1010F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 525A116E3BEFF2BCCC642205 /* libPods.a */; };
 		812BE73D1BF68528000DB47E /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812BE73C1BF68528000DB47E /* main.swift */; };
 /* End PBXBuildFile section */
 
@@ -23,8 +24,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		015754FBD844142A2D07AF3A /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		525A116E3BEFF2BCCC642205 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		812BE7391BF68528000DB47E /* swift-serial */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "swift-serial"; sourceTree = BUILT_PRODUCTS_DIR; };
 		812BE73C1BF68528000DB47E /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		819F72021BF894BF00801D11 /* SwiftSerial-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SwiftSerial-Bridging-Header.h"; sourceTree = "<group>"; };
+		93233B979DEFFFC73E90B331 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16C603C556BCB10C91B1010F /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,6 +49,8 @@
 			children = (
 				812BE73B1BF68528000DB47E /* swift-serial */,
 				812BE73A1BF68528000DB47E /* Products */,
+				C2CA4AF19DB356232BA59283 /* Pods */,
+				BFB29C95A611C56075495FB0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,8 +66,26 @@
 			isa = PBXGroup;
 			children = (
 				812BE73C1BF68528000DB47E /* main.swift */,
+				819F72021BF894BF00801D11 /* SwiftSerial-Bridging-Header.h */,
 			);
 			path = "swift-serial";
+			sourceTree = "<group>";
+		};
+		BFB29C95A611C56075495FB0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				525A116E3BEFF2BCCC642205 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C2CA4AF19DB356232BA59283 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				93233B979DEFFFC73E90B331 /* Pods.debug.xcconfig */,
+				015754FBD844142A2D07AF3A /* Pods.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -69,9 +95,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 812BE7401BF68528000DB47E /* Build configuration list for PBXNativeTarget "swift-serial" */;
 			buildPhases = (
+				7340FE2968995EAE7E2A3788 /* Check Pods Manifest.lock */,
 				812BE7351BF68528000DB47E /* Sources */,
 				812BE7361BF68528000DB47E /* Frameworks */,
 				812BE7371BF68528000DB47E /* CopyFiles */,
+				787BCA754A6DD1BE8625178D /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -113,6 +141,39 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7340FE2968995EAE7E2A3788 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		787BCA754A6DD1BE8625178D /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		812BE7351BF68528000DB47E /* Sources */ = {
@@ -208,15 +269,19 @@
 		};
 		812BE7411BF68528000DB47E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 93233B979DEFFFC73E90B331 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "swift-serial/SwiftSerial-Bridging-Header.h";
 			};
 			name = Debug;
 		};
 		812BE7421BF68528000DB47E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 015754FBD844142A2D07AF3A /* Pods.release.xcconfig */;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "swift-serial/SwiftSerial-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -239,6 +304,7 @@
 				812BE7421BF68528000DB47E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
