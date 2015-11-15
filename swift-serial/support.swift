@@ -74,7 +74,7 @@ class SerialHandler : NSObject, ORSSerialPortDelegate {
     var serialPort: ORSSerialPort?
     var writeToOutputFile: Bool = false
     
-    func readDataFromSerialDevice(fromSerialDevice: String, writeToFile: String) {
+    func readDataFromSerialDevice(fromSerialDevice: String, writeToFile: String, eraseExisting : Bool = false) {
         
         // set outputFile
         if (writeToFile.characters.count != 0) {
@@ -85,11 +85,25 @@ class SerialHandler : NSObject, ORSSerialPortDelegate {
             let sharedDataPath = documentPath.stringByAppendingPathComponent("Shared Playground Data")
 
             outputFile = sharedDataPath + "/" + writeToFile
-            print("\(outputFile)")
             writeToOutputFile = true
+            
+            // remove the existing file if requested
+            if (eraseExisting) {
+                
+                do {
+                    let filemgr = NSFileManager.defaultManager()
+                    try filemgr.removeItemAtPath(outputFile)
+                    print("Existing output file: \(outputFile) removed.")
+                }
+                catch {
+                    print("Error, existing output file: \(outputFile) could not be removed.")
+                }
+
+            }
+            
+            // Report what file is being written to
+            print("Writing to file: \(outputFile)")
         }
-        
-        setbuf(stdout, nil)
         
         standardInputFileHandle.readabilityHandler = { (fileHandle: NSFileHandle!) in
             let data = fileHandle.availableData
@@ -97,7 +111,9 @@ class SerialHandler : NSObject, ORSSerialPortDelegate {
                 self.handleUserInput(data)
             })
         }
-        
+
+        setbuf(stdout, nil)
+
         self.serialPort = ORSSerialPort(path: fromSerialDevice)
         self.serialPort?.baudRate = 9600
         self.serialPort?.delegate = self

@@ -43,7 +43,7 @@ print("To quit type: 'exit' or 'quit'")
 // Leave second arguemnt as "" if file output is not desired
 // File will be created in ~/Documents/Shared Playground Data
 //
-SerialHandler().readDataFromSerialDevice("/dev/cu.usbmodem1421", writeToFile: "serial-output.txt")
+SerialHandler().readDataFromSerialDevice("/dev/cu.usbmodem1421", writeToFile: "serial-output.txt", eraseExisting: true)
 //SerialHandler().readDataFromSerialDevice("/dev/cu.usbmodem1421", writeToFile: "")
 
 
