@@ -73,6 +73,7 @@ class SerialHandler : NSObject, ORSSerialPortDelegate {
     var outputFile : String = ""
     var serialPort: ORSSerialPort?
     var writeToOutputFile: Bool = false
+    var firstLine : Bool = true
     
     func readDataFromSerialDevice(fromSerialDevice: String, writeToFile: String, eraseExisting : Bool = false) {
         
@@ -143,17 +144,24 @@ class SerialHandler : NSObject, ORSSerialPortDelegate {
         if let string = NSString(data: data, encoding: NSUTF8StringEncoding) {
             
             // print to the output window
-            print("\(string)", terminator: "")
+            if (!firstLine) {
+                print("\(string)", terminator: "")    
+            }
             
             // write to the file
             if (writeToOutputFile) {
-                do {
-                    let url = NSURL(fileURLWithPath: outputFile)
-                    try string.appendToURL(url)
-                    let result = try String(contentsOfURL: url)
-                }
-                catch {
-                    print("Could not write to file")
+                if (firstLine == false) {
+                    do {
+                        let url = NSURL(fileURLWithPath: outputFile)
+                        try string.appendToURL(url)
+                        let result = try String(contentsOfURL: url)
+                    }
+                    catch {
+                        print("Could not write to file")
+                    }
+                } else {
+                    // don't write first line to file
+                    firstLine = false
                 }
             }
         }
