@@ -37,12 +37,58 @@ func printSerialPaths(portIterator: io_iterator_t) {
     } while serialService != 0;
 }
 
+
+// extension to add string to a file
+extension NSString {
+    func appendLineToURL(fileURL: NSURL) throws {
+        try self.stringByAppendingString("\n").appendToURL(fileURL)
+    }
+    
+    func appendToURL(fileURL: NSURL) throws {
+        let data = self.dataUsingEncoding(NSUTF8StringEncoding)!
+        try data.appendToURL(fileURL)
+    }
+}
+
+// extension to write to a file
+extension NSData {
+    func appendToURL(fileURL: NSURL) throws {
+        if let fileHandle = try? NSFileHandle(forWritingToURL: fileURL) {
+            defer {
+                fileHandle.closeFile()
+            }
+            fileHandle.seekToEndOfFile()
+            fileHandle.writeData(self)
+        }
+        else {
+            try writeToURL(fileURL, options: .DataWritingAtomic)
+        }
+    }
+}
+
 // Class to handle reading of serial port
 class SerialHandler : NSObject, ORSSerialPortDelegate {
-    let standardInputFileHandle = NSFileHandle.fileHandleWithStandardInput()
-    var serialPort: ORSSerialPort?
     
-    func readDataFromSerialDevice(fromSerialDevice: String) {
+    let standardInputFileHandle = NSFileHandle.fileHandleWithStandardInput()
+    var outputFile : String = ""
+    var serialPort: ORSSerialPort?
+    var writeToOutputFile: Bool = false
+    
+    func readDataFromSerialDevice(fromSerialDevice: String, writeToFile: String) {
+        
+        // set outputFile
+        if (writeToFile.characters.count != 0) {
+            // Get path to the Documents folder
+            let documentPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString
+            
+            // Append folder name of Shared Playground Data folder
+            let sharedDataPath = documentPath.stringByAppendingPathComponent("Shared Playground Data")
+
+            outputFile = sharedDataPath + "/" + writeToFile
+            print("\(outputFile)")
+            writeToOutputFile = true
+        }
+        
         setbuf(stdout, nil)
         
         standardInputFileHandle.readabilityHandler = { (fileHandle: NSFileHandle!) in
@@ -52,12 +98,13 @@ class SerialHandler : NSObject, ORSSerialPortDelegate {
             })
         }
         
-        self.serialPort = ORSSerialPort(path: fromSerialDevice) // please adjust to your handle
+        self.serialPort = ORSSerialPort(path: fromSerialDevice)
         self.serialPort?.baudRate = 9600
         self.serialPort?.delegate = self
         serialPort?.open()
         
         NSRunLoop.currentRunLoop().run() // loop
+        
     }
     
     
@@ -76,8 +123,23 @@ class SerialHandler : NSObject, ORSSerialPortDelegate {
     // ORSSerialPortDelegate
     
     func serialPort(serialPort: ORSSerialPort, didReceiveData data: NSData) {
+        
         if let string = NSString(data: data, encoding: NSUTF8StringEncoding) {
+            
+            // print to the output window
             print("\(string)", terminator: "")
+            
+            // write to the file
+            if (writeToOutputFile) {
+                do {
+                    let url = NSURL(fileURLWithPath: outputFile)
+                    try string.appendToURL(url)
+                    let result = try String(contentsOfURL: url)
+                }
+                catch {
+                    print("Could not write to file")
+                }
+            }
         }
     }
     
@@ -93,3 +155,4 @@ class SerialHandler : NSObject, ORSSerialPortDelegate {
         print("Serial port \(serialPort) was opened")
     }
 }
+

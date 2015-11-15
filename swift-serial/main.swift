@@ -37,8 +37,12 @@ if kernResult == KERN_SUCCESS {
 print("Starting serial test program")
 print("To quit type: 'exit' or 'quit'")
 // Uncomment line below
-// Replace argument with name of serial device on your system
-SerialHandler().readDataFromSerialDevice("/dev/cu.usbmodem1421")
+// Replace first argument with name of serial device on your system
+// Replace second argument with name of file to re-direct output to
+// Leave second arguemnt as "" if file output is not desired
+// File will be created in ~/Documents/Shared Playground Data
+//SerialHandler().readDataFromSerialDevice("/dev/cu.usbmodem1421", writeToFile: "serial-output.txt")
+SerialHandler().readDataFromSerialDevice("/dev/cu.usbmodem1421", writeToFile: "")
 
 
 
