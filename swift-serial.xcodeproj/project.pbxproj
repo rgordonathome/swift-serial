@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		16C603C556BCB10C91B1010F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 525A116E3BEFF2BCCC642205 /* libPods.a */; };
 		812BE73D1BF68528000DB47E /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812BE73C1BF68528000DB47E /* main.swift */; };
+		819F72041BF89BA700801D11 /* support.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819F72031BF89BA700801D11 /* support.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,6 +30,7 @@
 		812BE7391BF68528000DB47E /* swift-serial */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "swift-serial"; sourceTree = BUILT_PRODUCTS_DIR; };
 		812BE73C1BF68528000DB47E /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		819F72021BF894BF00801D11 /* SwiftSerial-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SwiftSerial-Bridging-Header.h"; sourceTree = "<group>"; };
+		819F72031BF89BA700801D11 /* support.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = support.swift; sourceTree = "<group>"; };
 		93233B979DEFFFC73E90B331 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -67,6 +69,7 @@
 			children = (
 				812BE73C1BF68528000DB47E /* main.swift */,
 				819F72021BF894BF00801D11 /* SwiftSerial-Bridging-Header.h */,
+				819F72031BF89BA700801D11 /* support.swift */,
 			);
 			path = "swift-serial";
 			sourceTree = "<group>";
@@ -181,6 +184,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				812BE73D1BF68528000DB47E /* main.swift in Sources */,
+				819F72041BF89BA700801D11 /* support.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
