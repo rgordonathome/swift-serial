@@ -275,6 +275,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 93233B979DEFFFC73E90B331 /* Pods.debug.xcconfig */;
 			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "swift-serial/SwiftSerial-Bridging-Header.h";
 			};
@@ -284,6 +285,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 015754FBD844142A2D07AF3A /* Pods.release.xcconfig */;
 			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "swift-serial/SwiftSerial-Bridging-Header.h";
 			};
