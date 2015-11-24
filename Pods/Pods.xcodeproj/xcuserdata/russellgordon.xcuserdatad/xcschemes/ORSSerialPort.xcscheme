@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '95D1A62665C3152C10B22622'
+               BlueprintIdentifier = 'FFF3B5C26001E396CCD00B9A'
                BlueprintName = 'ORSSerialPort'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libORSSerialPort.a'>

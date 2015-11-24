@@ -277,6 +277,7 @@
 			buildSettings = {
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = "swift-serial/SwiftSerial-Bridging-Header.h";
 			};
 			name = Debug;
@@ -287,6 +288,7 @@
 			buildSettings = {
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = "swift-serial/SwiftSerial-Bridging-Header.h";
 			};
 			name = Release;

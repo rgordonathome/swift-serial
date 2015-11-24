@@ -154,7 +154,7 @@ class SerialHandler : NSObject, ORSSerialPortDelegate {
                     do {
                         let url = NSURL(fileURLWithPath: outputFile)
                         try string.appendToURL(url)
-                        let result = try String(contentsOfURL: url)
+                        _ = try String(contentsOfURL: url)
                     }
                     catch {
                         print("Could not write to file")
